@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] float speed;
     Rigidbody2D rb;
-    void Start()
+
+    private void Start()
     {
- 
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float xAxis = Input.GetAxisRaw("Horizontal");
+        float yAxis = Input.GetAxisRaw("Vertical");
+
+        Vector2 movement = new Vector2(xAxis, yAxis) * Time.deltaTime;
+
+        rb.velocity = movement.normalized * speed;
     }
 }
