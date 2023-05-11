@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     Rigidbody2D rb;
-    [SerializeField] Animator animator;
 
     private void Start()
     {
@@ -18,12 +17,7 @@ public class PlayerMovement : MonoBehaviour
         float xAxis = Input.GetAxisRaw("Horizontal");
         float yAxis = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", xAxis);
-        animator.SetFloat("Vertical", yAxis);
-
-        Vector2 movement = new Vector2(xAxis, yAxis);
-
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        Vector2 movement = new Vector2(xAxis, yAxis) * Time.deltaTime;
 
         rb.velocity = movement.normalized * speed;
     }
