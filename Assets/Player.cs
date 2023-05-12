@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     int health = 100;
-    int coins = 0;
+    public int coins = 0;
 
     public void TakeDamage(int damage)
     {
@@ -37,4 +37,5 @@ public class Player : MonoBehaviour
             coins -= amount;
         }
     }
+
 }
