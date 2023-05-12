@@ -4,22 +4,65 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int health = 100;
     public int coins = 0;
 
-    public void TakeDamage(int damage)
+    public delegate void OnHealthChangedDelegate();
+    public OnHealthChangedDelegate onHealthChangedCallback;
+
+    #region Sigleton
+    private static Player instance;
+    public static Player Instance
     {
-        if (health > 0 && damage > 0)
+        get
         {
-            health -= damage;
+            if (instance == null)
+                instance = FindObjectOfType<Player>();
+            return instance;
         }
     }
-    public void Heal(int amount)
+    #endregion
+
+    [SerializeField]
+    private float health;
+    [SerializeField]
+    private float maxHealth;
+    [SerializeField]
+    private float maxTotalHealth;
+
+    public float Health { get { return health; } }
+    public float MaxHealth { get { return maxHealth; } }
+    public float MaxTotalHealth { get { return maxTotalHealth; } }
+
+    public void Heal(float health)
     {
-        if (health > 0 && amount > 0)
+        this.health += health;
+        ClampHealth();
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
+        ClampHealth();
+    }
+
+    public void AddHealth()
+    {
+        if (maxHealth < maxTotalHealth)
         {
-            health -= amount;
+            maxHealth += 1;
+            health = maxHealth;
+
+            if (onHealthChangedCallback != null)
+                onHealthChangedCallback.Invoke();
         }
+    }
+
+    void ClampHealth()
+    {
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        if (onHealthChangedCallback != null)
+            onHealthChangedCallback.Invoke();
     }
     public void CollectCoins(int amount)
     {
