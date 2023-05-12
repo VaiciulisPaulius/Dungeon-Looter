@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             coins += amount;
+            Debug.Log("Earned coins: " + amount);
+            Debug.Log("Total coins: " + coins);
         }
     }
     public void SpendCoins(int amount)

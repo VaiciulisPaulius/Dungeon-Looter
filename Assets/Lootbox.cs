@@ -7,6 +7,47 @@ public class Lootbox : MonoBehaviour
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
 
+    GameObject lootGameObject;
+    SpriteRenderer lootGameObjectSprite;
+
+    bool playLootAnimation;
+    bool playPickupLootAnimation;
+
+    [SerializeField] float floatAmount;
+    [SerializeField] [Range(0f, 1000f)] float speed;
+
+    float alpha = 0;
+
+    private void Update()
+    {
+        if(playLootAnimation && lootGameObject != null)
+        {
+            float step = speed * Time.deltaTime;
+
+
+            alpha += step / floatAmount;
+
+            lootGameObject.transform.localPosition = Vector3.MoveTowards(lootGameObject.transform.localPosition, new Vector3(0, floatAmount, -0.1f), step);
+            lootGameObjectSprite.color = new Color(1, 1, 1, alpha);
+
+            if (Vector2.Distance(lootGameObject.transform.localPosition, new Vector3(0, floatAmount, -0.1f)) < 0.1f)
+            {
+                playLootAnimation = false;
+            }
+        }
+        else if(playPickupLootAnimation && lootGameObject != null)
+        {
+            float step = speed * Time.deltaTime;
+            alpha -= (step / floatAmount) * 2;
+            if (alpha < 0)
+            {
+                Destroy(lootGameObject);
+                playPickupLootAnimation = false;
+            }
+            lootGameObjectSprite.color = new Color(1, 1, 1, alpha);
+        }
+    }
+
     Loot GetDroppedItem()
     {
         int randomNumber = Random.Range(1, 101);
@@ -26,14 +67,22 @@ public class Lootbox : MonoBehaviour
         return null;
     }
 
-    public void InstantiateLoot(Vector3 spawnPosition)
+    public void InstantiateLoot()
     {
         Loot droppedItem = GetDroppedItem();
-        GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
-        lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+        lootGameObject = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        lootGameObjectSprite = lootGameObject.GetComponent<SpriteRenderer>();
+        lootGameObjectSprite.sprite = droppedItem.lootSprite;
 
-        float dropForce = 1f;
-        Vector2 dropDirection = new Vector2(-1f, -1f);
-        lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
+        lootGameObjectSprite.color = new Color(1, 1, 1, 0);
+
+        playLootAnimation = true;
+    }
+    public void PickUpLoot(int moneyAmount)
+    {
+        if (lootGameObject == null) return;
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectCoins(moneyAmount);
+        playPickupLootAnimation = true;
     }
 }
