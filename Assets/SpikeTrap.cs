@@ -39,12 +39,16 @@ public class SpikeTrap : MonoBehaviour
             if (damageTimer <= 0) // check if damage timer has expired
             {
                 player.TakeDamage(damage);
-                damageTimer = 1.0f; // reset damage timer
+                damageTimer = 5.0f; // reset damage timer
             }
             else
             {
                 damageTimer -= Time.deltaTime; // decrement damage timer
             }
+        }
+        else if (!isWorking) // if spike trap is inactive, reset damage timer
+        {
+            damageTimer = 0;
         }
     }
 }
