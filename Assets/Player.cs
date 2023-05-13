@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     public int coins = 0;
 
     public delegate void OnHealthChangedDelegate();
@@ -39,11 +42,20 @@ public class Player : MonoBehaviour
         ClampHealth();
     }
 
+    
+
     public void TakeDamage(float dmg)
     {
+
         health -= dmg;
+        if (health <= 0)
+        {
+
+            health = 0;
+            Debug.Log("Player took damage: " + dmg);
+            OnPlayerDeath?.Invoke();
+        }
         ClampHealth();
-        Debug.Log("Player took damage: " + dmg);
     }
 
     public void AddHealth()

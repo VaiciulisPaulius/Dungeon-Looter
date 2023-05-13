@@ -11,6 +11,19 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        EnablePlayerMovement();
+    }
+
+    private void OnEnable()
+    {
+        Player.OnPlayerDeath += DisablePlayerMovement;
+
+    }
+
+    private void OnDisable()
+    {
+        Player.OnPlayerDeath -= DisablePlayerMovement;
+
     }
 
     void Update()
@@ -26,5 +39,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         rb.velocity = movement.normalized * speed;
+    }
+    private void DisablePlayerMovement()
+    {
+        animator.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    private void EnablePlayerMovement()
+    {
+        animator.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }
