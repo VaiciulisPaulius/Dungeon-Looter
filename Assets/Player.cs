@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     {
         health -= dmg;
         ClampHealth();
+        Debug.Log("Player took damage: " + dmg);
     }
 
     public void AddHealth()
