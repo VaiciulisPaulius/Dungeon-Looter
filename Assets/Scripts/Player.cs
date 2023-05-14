@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerDeath;
 
     public int coins = 0;
+    public int score = 0;
 
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
@@ -82,8 +83,10 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             coins += amount;
+            score += amount;
             Debug.Log("Earned coins: " + amount);
             Debug.Log("Total coins: " + coins);
+            Debug.Log("Total score: " + score);
         }
     }
     public void SpendCoins(int amount)
