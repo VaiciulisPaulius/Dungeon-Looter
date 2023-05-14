@@ -83,10 +83,8 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             coins += amount;
-            score += amount;
             Debug.Log("Earned coins: " + amount);
             Debug.Log("Total coins: " + coins);
-            Debug.Log("Total score: " + score);
         }
     }
     public void SpendCoins(int amount)
@@ -94,6 +92,16 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             coins -= amount;
+        }
+    }
+
+    public void CollectScore(int amount)
+    {
+        if (amount > 0)
+        {
+            score += amount;
+            Debug.Log("Earned score: " + amount);
+            Debug.Log("Total score: " + score);
         }
     }
 

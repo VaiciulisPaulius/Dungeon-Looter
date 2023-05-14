@@ -50,16 +50,26 @@ public class Lootbox : MonoBehaviour
 
     Loot GetDroppedItem()
     {
-        int randomNumber = Random.Range(1, 101);
+        List<Loot> guaranteedItems = new List<Loot>();
         List<Loot> possibleItems = new List<Loot>();
         foreach (Loot item in lootList)
         {
-            if (randomNumber <= item.dropChance)
+            if (item.dropChance >= 100)
+            {
+                guaranteedItems.Add(item);
+            }
+            else
             {
                 possibleItems.Add(item);
             }
         }
-        if (possibleItems.Count > 0)
+
+        if (guaranteedItems.Count > 0)
+        {
+            Loot droppedItem = guaranteedItems[Random.Range(0, guaranteedItems.Count)];
+            return droppedItem;
+        }
+        else if (possibleItems.Count > 0)
         {
             Loot droppedItem = possibleItems[Random.Range(0, possibleItems.Count)];
             return droppedItem;
@@ -67,22 +77,32 @@ public class Lootbox : MonoBehaviour
         return null;
     }
 
+
     public void InstantiateLoot()
     {
         Loot droppedItem = GetDroppedItem();
-        lootGameObject = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        lootGameObjectSprite = lootGameObject.GetComponent<SpriteRenderer>();
-        lootGameObjectSprite.sprite = droppedItem.lootSprite;
+        if (droppedItem != null)
+        {
+            lootGameObject = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity, gameObject.transform);
+            lootGameObjectSprite = lootGameObject.GetComponent<SpriteRenderer>();
+            lootGameObjectSprite.sprite = droppedItem.lootSprite;
 
-        lootGameObjectSprite.color = new Color(1, 1, 1, 0);
+            lootGameObjectSprite.color = new Color(1, 1, 1, 0);
 
-        playLootAnimation = true;
+            playLootAnimation = true;
+        }
     }
     public void PickUpLoot(int moneyAmount)
     {
         if (lootGameObject == null) return;
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectCoins(moneyAmount);
+        Loot droppedItem = GetDroppedItem();
+        if (droppedItem != null && droppedItem.isCoin)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectCoins(moneyAmount);
+        }
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectScore(10);
+
         playPickupLootAnimation = true;
     }
 }

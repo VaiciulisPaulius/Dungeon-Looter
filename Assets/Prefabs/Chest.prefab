@@ -278,5 +278,6 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 126203162849207681, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
   lootList:
   - {fileID: 11400000, guid: 7fd0a3ba98addb843bc46224ef51a93a, type: 2}
+  - {fileID: 11400000, guid: 91a7aedda2c1f1d47805673f4fc87485, type: 2}
   floatAmount: 1
   speed: 3
