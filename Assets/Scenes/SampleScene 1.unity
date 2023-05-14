@@ -557,8 +557,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 126203162849207681, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
       propertyPath: m_Name
-      value: LootPrefab
+      value: CollectibleCoin
       objectReference: {fileID: 0}
+    - target: {fileID: 126203162849207681, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802959756636086332, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a98eb59a315f0534cbf8f403c8f985ec, type: 3}
     - target: {fileID: 2802959756636086332, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -569,11 +577,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6959333757435098171, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.52
+      value: -2.88
       objectReference: {fileID: 0}
     - target: {fileID: 6959333757435098171, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 6959333757435098171, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6413,6 +6421,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1173154128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 126203162849207681, guid: 5cdde2ebeb887aa4b9126d6c8d6e1a26, type: 3}
+  m_PrefabInstance: {fileID: 504698247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1173154131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173154128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d054cd2a22b8ca429b4e0a40153a7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpPotionData: {fileID: 11400000, guid: 211314ac22b3e9743ae033e506fb6f24, type: 2}
+--- !u!58 &1173154132
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173154128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1322498526
 GameObject:
   m_ObjectHideFlags: 0
@@ -6428,6 +6470,7 @@ GameObject:
   - component: {fileID: 1322498530}
   - component: {fileID: 1322498532}
   - component: {fileID: 1322498533}
+  - component: {fileID: 1322498534}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -6602,6 +6645,18 @@ MonoBehaviour:
   health: 3
   maxHealth: 3
   maxTotalHealth: 30
+--- !u!114 &1322498534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322498526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60e4de9ba8cdd949ad9a81b78e41d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1336746355
 GameObject:
   m_ObjectHideFlags: 0
