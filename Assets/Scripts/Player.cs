@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         health -= dmg;
         if (health <= 0)
         {
-
+            EndGame.isDead = true;
             health = 0;
             Debug.Log("Player took damage: " + dmg);
             OnPlayerDeath?.Invoke();

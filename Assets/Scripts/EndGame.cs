@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class EndGame : MonoBehaviour
 {
     public GameObject gameOverMenu;
+    public static bool isDead;
 
-    
+    public void Start()
+    {
+        isDead = false;
+    }
     
     public void enableGameOverMenu()
     {
