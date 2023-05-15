@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 
     public int coins = 0;
     public int score = 0;
+    public int level = 1;
+    public int exp = 0;
+    public int expToNextLevel = 20;
     private List<string> unlockedAchievements = new List<string>();
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
@@ -42,8 +45,6 @@ public class Player : MonoBehaviour
         this.health += health;
         ClampHealth();
     }
-
-    
 
     public void TakeDamage(float dmg)
     {
@@ -100,12 +101,33 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             score += amount;
+            exp += amount;
+            CheckLevelUp();
             Debug.Log("Earned score: " + amount);
             Debug.Log("Total score: " + score);
+            Debug.Log("Total exp: " + exp);
         }
     }
 
-    public bool HasUnlockedAchievement(string achievementName)
+    public void CheckLevelUp()
+    {
+        if (exp >= expToNextLevel)
+        {
+            LevelUp();
+        }
+    }
+
+
+    public void LevelUp()
+    {
+        level++;
+        exp = 0;
+        expToNextLevel += 10;
+        AddHealth();
+        Debug.Log("Congratulations! You have reached level " + level + ".");
+
+    }
+        public bool HasUnlockedAchievement(string achievementName)
     {
         return unlockedAchievements.Contains(achievementName);
     }
