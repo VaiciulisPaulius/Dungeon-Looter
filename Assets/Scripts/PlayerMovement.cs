@@ -40,13 +40,13 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = movement.normalized * speed;
     }
-    private void DisablePlayerMovement()
+    public void DisablePlayerMovement()
     {
         animator.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    private void EnablePlayerMovement()
+    public void EnablePlayerMovement()
     {
         animator.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
