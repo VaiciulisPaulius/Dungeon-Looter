@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ClickFunction : MonoBehaviour
 {
     public Player player;
+   
 
-    void OnMouseDown()
+
+
+    void Update()
     {
-        Debug.Log("CLICKED");
-        player.Heal(10);
-       
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.Heal(1);
+            
+        }
+
+        
     }
 }
