@@ -86,11 +86,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065414000150171612}
+  - component: {fileID: 8198529739466228252}
   - component: {fileID: 404845546916150520}
   - component: {fileID: 6409601958660238102}
   - component: {fileID: 816347123750201281}
   - component: {fileID: 8774734377793427880}
   - component: {fileID: 5315346936743357045}
+  - component: {fileID: 6631975939476928522}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -121,6 +123,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!61 &8198529739466228252
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887714843421282128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!223 &404845546916150520
 Canvas:
   m_ObjectHideFlags: 0
@@ -130,7 +158,7 @@ Canvas:
   m_GameObject: {fileID: 2887714843421282128}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -215,6 +243,19 @@ MonoBehaviour:
   icon: {fileID: 3958250242440702860}
   labelText: {fileID: 1339785784844458799}
   stackSizeText: {fileID: 3297493587833219831}
+--- !u!114 &6631975939476928522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887714843421282128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ee8c475435be543b8d6e6750f0f062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &3963149487465325380
 GameObject:
   m_ObjectHideFlags: 0
