@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     public int coins = 0;
     public int score = 0;
-
+    private List<string> unlockedAchievements = new List<string>();
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
 
@@ -104,5 +104,18 @@ public class Player : MonoBehaviour
             Debug.Log("Total score: " + score);
         }
     }
+
+    public bool HasUnlockedAchievement(string achievementName)
+    {
+        return unlockedAchievements.Contains(achievementName);
+    }
+
+    public void UnlockAchievement(string achievementName)
+    {
+        unlockedAchievements.Add(achievementName);
+        Debug.Log("Achievement Unlocked: " + achievementName);
+    }
+
+
 
 }
