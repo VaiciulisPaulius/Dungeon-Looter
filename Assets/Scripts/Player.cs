@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private List<string> unlockedAchievements = new List<string>();
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
+    public ShopManager shop;
 
     #region Sigleton
     private static Player instance;
@@ -92,7 +93,9 @@ public class Player : MonoBehaviour
             coins += amount;
             Debug.Log("Earned coins: " + amount);
             Debug.Log("Total coins: " + coins);
+            shop.CheckPurchaseable();
         }
+
     }
     public void SpendCoins(int amount)
     {
