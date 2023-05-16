@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int level = 1;
     public int exp = 0;
     public int expToNextLevel = 20;
+    private ProgressBar progressBar;
     private List<string> unlockedAchievements = new List<string>();
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
@@ -40,6 +41,11 @@ public class Player : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } }
     public float MaxTotalHealth { get { return maxTotalHealth; } }
 
+
+    private void Start()
+    {
+        progressBar = FindObjectOfType<ProgressBar>();
+    }
     public void Heal(float health)
     {
         this.health += health;
@@ -103,6 +109,7 @@ public class Player : MonoBehaviour
             score += amount;
             exp += amount;
             CheckLevelUp();
+            progressBar.BarValue = (float)exp / expToNextLevel * 100f;
             Debug.Log("Earned score: " + amount);
             Debug.Log("Total score: " + score);
             Debug.Log("Total exp: " + exp);
@@ -123,6 +130,7 @@ public class Player : MonoBehaviour
         level++;
         exp = 0;
         expToNextLevel += 10;
+        progressBar.UpdateLevelText(level);
         AddHealth();
         Debug.Log("Congratulations! You have reached level " + level + ".");
 
