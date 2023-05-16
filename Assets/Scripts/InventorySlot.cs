@@ -26,11 +26,13 @@ public class InventorySlot : MonoBehaviour
         }
 
         icon.enabled = true;
+        icon.sprite = item.itemData.lootSprite;
         labelText.enabled = true;
+        labelText.text = item.itemData.lootName;
         stackSizeText.enabled = true;
 
-        icon.sprite = item.itemData.icon;
-        labelText.text= item.itemData.displayName;
+        //icon.sprite = item.itemData.icon;
+        //labelText.text= item.itemData.displayName;
         stackSizeText.text = item.stackSize.ToString();
     }
 }

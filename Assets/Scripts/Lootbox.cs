@@ -18,6 +18,8 @@ public class Lootbox : MonoBehaviour
 
     float alpha = 0;
 
+    Loot droppedItem;
+
     private void Update()
     {
         if(playLootAnimation && lootGameObject != null)
@@ -80,7 +82,7 @@ public class Lootbox : MonoBehaviour
 
     public void InstantiateLoot()
     {
-        Loot droppedItem = GetDroppedItem();
+        droppedItem = GetDroppedItem();
         if (droppedItem != null)
         {
             lootGameObject = Instantiate(droppedItemPrefab, transform.position, Quaternion.identity, gameObject.transform);
@@ -96,12 +98,14 @@ public class Lootbox : MonoBehaviour
     {
         if (lootGameObject == null) return;
 
-        Loot droppedItem = GetDroppedItem();
         if (droppedItem != null && droppedItem.isCoin)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectCoins(moneyAmount);
         }
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().CollectScore(10);
+
+        GetComponent<CollectibleItem>().data = droppedItem;
+        GetComponent<CollectibleItem>().Collect(false);
 
         playPickupLootAnimation = true;
     }

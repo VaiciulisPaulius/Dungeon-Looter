@@ -9,7 +9,7 @@ public class Collector : MonoBehaviour
         ICollectible collectible = collision.GetComponent<ICollectible>();
         if (collectible != null)
         {
-            collectible.Collect();
+            if(collision.CompareTag("Chest") == false) collectible.Collect(true);
         }
     }
 }

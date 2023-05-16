@@ -1,4 +1,4 @@
 public interface ICollectible 
 {
-    public void Collect();
+    public void Collect(bool delete);
 }

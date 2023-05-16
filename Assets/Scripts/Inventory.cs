@@ -9,19 +9,19 @@ public class Inventory : MonoBehaviour
     public static event Action<List<InventoryItem>> OnInventoryChange;
 
     public List<InventoryItem> inventory = new List<InventoryItem>();
-    private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
+    private Dictionary<Loot, InventoryItem> itemDictionary = new Dictionary<Loot, InventoryItem>();
 
     private void OnEnable()
     {
-        HpPotion.OnHpPotionCollected += Add;
+        CollectibleItem.OnItemCollected += Add;
     }
 
     private void OnDisable()
     {
-        HpPotion.OnHpPotionCollected -= Add;
+        CollectibleItem.OnItemCollected -= Add;
     }
 
-    public void Add(ItemData itemData)
+    public void Add(Loot itemData)
     {
        if(itemDictionary.TryGetValue(itemData, out InventoryItem item))
         {
@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Remove(ItemData itemData)
+    public void Remove(Loot itemData)
     {
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
         {
