@@ -18,6 +18,17 @@ public class Player : MonoBehaviour
     public OnHealthChangedDelegate onHealthChangedCallback;
     public ShopManager shop;
 
+    // If reference error, drag the references from the materials folder, accordingly to the names.
+    [SerializeField]
+    Material flashMaterial;
+    [SerializeField]
+    Material defaultMaterial;
+    [SerializeField]
+    float flashDuration;
+
+    float flashTimer;
+    bool playFlashAnimation;
+    SpriteRenderer playerSpriteRenderer;
     #region Sigleton
     private static Player instance;
     public static Player Instance
@@ -38,6 +49,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxTotalHealth;
 
+    PlayerMovement playerMovementRef;
+
     public float Health { get { return health; } }
     public float MaxHealth { get { return maxHealth; } }
     public float MaxTotalHealth { get { return maxTotalHealth; } }
@@ -46,17 +59,38 @@ public class Player : MonoBehaviour
     private void Start()
     {
         progressBar = FindObjectOfType<ProgressBar>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        playerMovementRef = GetComponent<PlayerMovement>();
+        flashTimer = 0;
+    }
+    private void Update()
+    {
+        if (playFlashAnimation) PlayFlashAnimation();
     }
     public void Heal(float health)
     {
         this.health += health;
         ClampHealth();
     }
-
+    private void PlayFlashAnimation()
+    {
+        if(flashTimer >= flashDuration)
+        {
+            playFlashAnimation = false;
+            playerSpriteRenderer.material = defaultMaterial;
+            flashTimer = 0;
+            playerMovementRef.SetPlayerSpeedToDefault();
+            return;
+        }
+        flashTimer += Time.deltaTime;
+        playerSpriteRenderer.material = flashMaterial;
+    }
     public void TakeDamage(float dmg)
     {
-
         health -= dmg;
+        playerMovementRef.SetPlayerSpeed(playerMovementRef.GetPlayerSpeed() * 0.5f);
+
+        playFlashAnimation = true;
         if (health <= 0)
         {
             EndGame.isDead = true;
@@ -93,7 +127,7 @@ public class Player : MonoBehaviour
             coins += amount;
             Debug.Log("Earned coins: " + amount);
             Debug.Log("Total coins: " + coins);
-            shop.CheckPurchaseable();
+            //shop.CheckPurchaseable();
         }
 
     }

@@ -8,10 +8,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] Animator animator;
 
+    float defaultSpeed;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         EnablePlayerMovement();
+        defaultSpeed = speed;
     }
 
     private void OnEnable()
@@ -50,5 +53,17 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+    public void SetPlayerSpeed(float newSpeed)
+    {
+        if (newSpeed >= 0) speed = newSpeed;
+    }
+    public void SetPlayerSpeedToDefault()
+    {
+        speed = defaultSpeed;
+    }
+    public float GetPlayerSpeed()
+    {
+        return speed;
     }
 }
