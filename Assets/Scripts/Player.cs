@@ -55,6 +55,11 @@ public class Player : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } }
     public float MaxTotalHealth { get { return maxTotalHealth; } }
 
+    bool canTakeDamage = true;
+    [SerializeField]
+    float damageCooldown;
+    float damageTimer;
+
 
     private void Start()
     {
@@ -66,6 +71,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (playFlashAnimation) PlayFlashAnimation();
+        if (!canTakeDamage)
+        {
+            damageTimer += Time.deltaTime;
+            if(damageTimer >= damageCooldown)
+            {
+                damageTimer = 0;
+                canTakeDamage = true;
+            }
+        }
     }
     public void Heal(float health)
     {
@@ -87,18 +101,22 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
-        health -= dmg;
-        playerMovementRef.SetPlayerSpeed(playerMovementRef.GetPlayerSpeed() * 0.5f);
-
-        playFlashAnimation = true;
-        if (health <= 0)
+        if(canTakeDamage)
         {
-            EndGame.isDead = true;
-            health = 0;
-            Debug.Log("Player took damage: " + dmg);
-            OnPlayerDeath?.Invoke();
+            health -= dmg;
+            playerMovementRef.SetPlayerSpeed(playerMovementRef.GetPlayerSpeed() * 0.5f);
+
+            playFlashAnimation = true;
+            if (health <= 0)
+            {
+                EndGame.isDead = true;
+                health = 0;
+                Debug.Log("Player took damage: " + dmg);
+                OnPlayerDeath?.Invoke();
+            }
+            ClampHealth();
+            canTakeDamage = false;
         }
-        ClampHealth();
     }
 
     public void AddHealth()
