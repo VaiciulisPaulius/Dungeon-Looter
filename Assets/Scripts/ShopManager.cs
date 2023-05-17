@@ -21,7 +21,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < shopItemsSO.Length; i++)
             shopPanelsGO[i].SetActive(true);
         LoadPanels();
-        CheckPurchaseable();
+        //CheckPurchaseable();
 
         inventory = FindObjectOfType<Inventory>();
     }
@@ -62,8 +62,8 @@ public class ShopManager : MonoBehaviour
             player.coins = player.coins - shopItemsSO[btnNo].baseCost;
             coinUI.text = "Coins: " + player.coins.ToString();
             inventory.Add(shopItemsSO[btnNo].item);
-            inventoryInteraction.SpendCoins(shopItemsSO[btnNo].baseCost);
-            CheckPurchaseable();
+            inventoryInteraction.SpendCoins(shopItemsSO[btnNo].baseCost, shopItemsSO[btnNo].item);
+            //CheckPurchaseable();
         }
         
     }

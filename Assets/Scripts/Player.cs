@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
             coins += amount;
             Debug.Log("Earned coins: " + amount);
             Debug.Log("Total coins: " + coins);
-            shop.CheckPurchaseable();
+            //shop.CheckPurchaseable();
         }
 
     }

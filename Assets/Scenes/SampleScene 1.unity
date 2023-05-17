@@ -242,6 +242,14 @@ PrefabInstance:
       propertyPath: inventoryInteraction
       value: 
       objectReference: {fileID: 1152486229}
+    - target: {fileID: 1147593498106980309, guid: 37cc9eec309a3e34586b8d48294841b9, type: 3}
+      propertyPath: shopItemsSO.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147593498106980309, guid: 37cc9eec309a3e34586b8d48294841b9, type: 3}
+      propertyPath: shopItemsSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5756c524ae00d104d824424d7a650f1a, type: 2}
     - target: {fileID: 5459812289482281525, guid: 37cc9eec309a3e34586b8d48294841b9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -17173,6 +17181,10 @@ PrefabInstance:
       propertyPath: coinPrefab
       value: 
       objectReference: {fileID: 11400000, guid: 7fd0a3ba98addb843bc46224ef51a93a, type: 2}
+    - target: {fileID: 6791732153480742825, guid: b424c8f279333ab4681e0fba4e14954a, type: 3}
+      propertyPath: bootsPrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: c924effa3a3070940b7ccd06eebaa063, type: 2}
     - target: {fileID: 6791732153480742826, guid: b424c8f279333ab4681e0fba4e14954a, type: 3}
       propertyPath: m_RootOrder
       value: 12

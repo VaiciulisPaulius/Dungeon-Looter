@@ -62,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
     {
         speed = defaultSpeed;
     }
+    public void SetPlayerSpeedDefault(float newSpeed)
+    {
+        defaultSpeed = newSpeed;
+    }
     public float GetPlayerSpeed()
     {
         return speed;
