@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3339369e3a28c46b78b79ab897cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyInside: 10
+  moneyInside: 1
   animator: {fileID: 4670482006688070320}
   item: {fileID: 0}
   highlighter: {fileID: 4670482005790679144}
