@@ -7,6 +7,7 @@ public class InventoryInteraction : MonoBehaviour
     Inventory inventory;
     Player playerRef;
     public Loot healPotPrefab;
+    public Loot coinPrefab;
 
     private void Start()
     {
@@ -23,6 +24,17 @@ public class InventoryInteraction : MonoBehaviour
         {
             playerRef.Heal(1f);
             inventory.Remove(healPotPrefab);
+        }
+    }
+    public void SpendCoins(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if (inventory.Check(coinPrefab))
+            {
+                inventory.Remove(coinPrefab);
+            }
+            else return;
         }
     }
 }

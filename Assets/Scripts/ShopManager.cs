@@ -13,8 +13,9 @@ public class ShopManager : MonoBehaviour
     public GameObject[] shopPanelsGO;
     public Button[] myPurchaseBtns;
     public Inventory inventory;
+    public InventoryInteraction inventoryInteraction;
 
-    
+
     void Start()
     {
         for (int i = 0; i < shopItemsSO.Length; i++)
@@ -61,6 +62,7 @@ public class ShopManager : MonoBehaviour
             player.coins = player.coins - shopItemsSO[btnNo].baseCost;
             coinUI.text = "Coins: " + player.coins.ToString();
             inventory.Add(shopItemsSO[btnNo].item);
+            inventoryInteraction.SpendCoins(shopItemsSO[btnNo].baseCost);
             CheckPurchaseable();
         }
     }
