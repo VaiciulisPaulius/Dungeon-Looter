@@ -5,50 +5,74 @@ using UnityEngine;
 public class Achievements : MonoBehaviour
 {
     private Player player;
+    private HashSet<string> unlockedAchievements = new HashSet<string>();
+    public GameObject popupUIPrefab;
+    public Transform canvasTransform;
+    private GameObject currentPopupUI;
 
-    void Start()
+    private Dictionary<string, int> achievements = new Dictionary<string, int>()
+    {
+        { "First chest looted!", 10 },
+        { "5 chests looted!", 50 },
+        { "10 chests looted!", 100 },
+        { "25 chests looted!", 250 },
+        { "50 chests looted!", 500 },
+        { "Reached level 2!", 2 },
+        { "Reached level 3!", 3 },
+        { "Reached level 4!", 4 },
+        { "Reached level 5!", 5 }
+    };
+
+    private void Start()
     {
         player = Player.Instance;
     }
 
-    void Update()
+    private void Update()
     {
-        if (player.score >= 10 && !player.HasUnlockedAchievement("First chest looted!"))
+        foreach (var achievement in achievements)
         {
-            player.UnlockAchievement("First chest looted!");
-        }
-        if(player.score >= 50 && !player.HasUnlockedAchievement("5 chests looted!"))
-        {
-            player.UnlockAchievement("5 chests looted!");
-        }
-        if (player.score >= 100 && !player.HasUnlockedAchievement("10 chests looted!"))
-        {
-            player.UnlockAchievement("10 chests looted!");
-        }
-        if (player.score >= 250 && !player.HasUnlockedAchievement("25 chests looted!"))
-        {
-            player.UnlockAchievement("25 chests looted!");
-        }
-        if (player.score >= 500 && !player.HasUnlockedAchievement("50 chests looted!"))
-        {
-            player.UnlockAchievement("50 chests looted!");
-        }
-        if (player.level >= 2 && !player.HasUnlockedAchievement("Reached level 2!"))
-        {
-            player.UnlockAchievement("Reached level 2!");
-        }
-        if (player.level >= 3 && !player.HasUnlockedAchievement("Reached level 3!"))
-        {
-            player.UnlockAchievement("Reached level 3!");
-        }
-        if (player.level >= 4 && !player.HasUnlockedAchievement("Reached level 4!"))
-        {
-            player.UnlockAchievement("Reached level 4!");
-        }
-        if (player.level >= 5 && !player.HasUnlockedAchievement("Reached level 5!"))
-        {
-            player.UnlockAchievement("Reached level 5!");
+            if (!unlockedAchievements.Contains(achievement.Key))
+            {
+                bool shouldUnlock = false;
+
+                if (achievement.Key.Contains("chest") && player.score >= achievement.Value)
+                {
+                    shouldUnlock = true;
+                }
+                else if (achievement.Key.Contains("level") && player.level >= achievement.Value)
+                {
+                    shouldUnlock = true;
+                }
+
+                if (shouldUnlock)
+                {
+                    UnlockAchievement(achievement.Key);
+                    unlockedAchievements.Add(achievement.Key);
+                }
+            }
         }
     }
 
+    public bool HasUnlockedAchievement(string achievementName)
+    {
+        return unlockedAchievements.Contains(achievementName);
+    }
+
+    public void UnlockAchievement(string achievementName)
+    {
+        unlockedAchievements.Add(achievementName);
+        ShowPopupUI("Achievement Unlocked: " + achievementName);
+    }
+
+    private void ShowPopupUI(string text)
+    {
+        if (currentPopupUI == null)
+        {
+            currentPopupUI = Instantiate(popupUIPrefab, canvasTransform);
+        }
+
+        currentPopupUI.GetComponent<PopupUI>().SetText(text);
+        currentPopupUI.SetActive(true);
+    }
 }

@@ -9,14 +9,10 @@ public class Player : MonoBehaviour
 
     public int coins = 0;
     public int score = 0;
-    public GameObject popupUIPrefab;
-    public Transform canvasTransform;
-    private GameObject currentPopupUI;
     public int level = 1;
     public int exp = 0;
     public int expToNextLevel = 20;
     private ProgressBar progressBar;
-    private List<string> unlockedAchievements = new List<string>();
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
     public ShopManager shop;
@@ -202,28 +198,6 @@ public class Player : MonoBehaviour
         AddHealth();
         Debug.Log("Congratulations! You have reached level " + level + ".");
 
-    }
-        public bool HasUnlockedAchievement(string achievementName)
-    {
-        return unlockedAchievements.Contains(achievementName);
-    }
-
-    public void UnlockAchievement(string achievementName)
-    {
-        unlockedAchievements.Add(achievementName);
-        Debug.Log("Achievement Unlocked: " + achievementName);
-        ShowPopupUI("Achievement Unlocked: " + achievementName);
-    }
-
-    private void ShowPopupUI(string text)
-    {
-        if (currentPopupUI == null)
-        {
-            currentPopupUI = Instantiate(popupUIPrefab, canvasTransform);
-        }
-
-        currentPopupUI.GetComponent<PopupUI>().SetText(text);
-        currentPopupUI.SetActive(true);
     }
 
 }
