@@ -10,14 +10,11 @@ public class ClickFunction : MonoBehaviour
     public static bool isInShop = false;
     public PlayerMovement playerMovement;
    
-
-
-
     void Update()
     {
        
 
-        if (Input.GetKeyDown(KeyCode.B) && EndGame.isDead == false)
+        if (Input.GetKeyDown(KeyCode.B) && EndGame.isDead == false && PauseMenu.isPaused == false)
         {
             if (!isInShop)
             {
