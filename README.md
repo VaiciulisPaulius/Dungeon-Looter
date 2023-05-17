@@ -1,5 +1,5 @@
-Paulius Vaičiulis, Erikas Ramaneckas, Maksim Jakovčenko, PI22B
-Žaidimas "DUNGEON LOOTER"
+**Paulius Vaičiulis, Erikas Ramaneckas, Maksim Jakovčenko, PI22B<br/>
+Žaidimas "DUNGEON LOOTER"<br/>**
 Žaidimo aprašas:
 - Žaidėjas žaidžia už pagrindinį veikėją naudojat W A S D klavišus judėjimui.
 - Žaidimo tikslas - ištirti prarastą požemį.
