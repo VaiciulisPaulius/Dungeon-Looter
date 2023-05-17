@@ -25,12 +25,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     Material flashMaterial;
     [SerializeField]
+    Material flashHealMaterial;
+    [SerializeField]
     Material defaultMaterial;
     [SerializeField]
     float flashDuration;
 
     float flashTimer;
-    bool playFlashAnimation;
+    bool playFlashDamageAnimation;
+    bool playFlashHealAnimation;
     SpriteRenderer playerSpriteRenderer;
     #region Sigleton
     private static Player instance;
@@ -48,7 +51,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float health;
     [SerializeField]
-    private float maxHealth;
+    public float maxHealth;
     [SerializeField]
     private float maxTotalHealth;
 
@@ -61,7 +64,7 @@ public class Player : MonoBehaviour
     bool canTakeDamage = true;
     [SerializeField]
     float damageCooldown;
-    float damageTimer;
+    float timer;
 
 
     private void Start()
@@ -73,13 +76,14 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if (playFlashAnimation) PlayFlashAnimation();
+        if (playFlashDamageAnimation) PlayFlashAnimation(flashMaterial);
+        else if(playFlashHealAnimation) PlayFlashAnimation(flashHealMaterial);
         if (!canTakeDamage)
         {
-            damageTimer += Time.deltaTime;
-            if(damageTimer >= damageCooldown)
+            timer += Time.deltaTime;
+            if(timer >= damageCooldown)
             {
-                damageTimer = 0;
+                timer = 0;
                 canTakeDamage = true;
             }
         }
@@ -87,20 +91,26 @@ public class Player : MonoBehaviour
     public void Heal(float health)
     {
         this.health += health;
+
+        playerMovementRef.SetPlayerSpeed(playerMovementRef.GetPlayerSpeed() * 0.5f);
+        playFlashHealAnimation = true;
+
         ClampHealth();
     }
-    private void PlayFlashAnimation()
+    private void PlayFlashAnimation(Material material)
     {
         if(flashTimer >= flashDuration)
         {
-            playFlashAnimation = false;
+            playFlashDamageAnimation = false;
+            playFlashHealAnimation = false;
+
             playerSpriteRenderer.material = defaultMaterial;
             flashTimer = 0;
             playerMovementRef.SetPlayerSpeedToDefault();
             return;
         }
         flashTimer += Time.deltaTime;
-        playerSpriteRenderer.material = flashMaterial;
+        playerSpriteRenderer.material = material;
     }
     public void TakeDamage(float dmg)
     {
@@ -109,7 +119,7 @@ public class Player : MonoBehaviour
             health -= dmg;
             playerMovementRef.SetPlayerSpeed(playerMovementRef.GetPlayerSpeed() * 0.5f);
 
-            playFlashAnimation = true;
+            playFlashDamageAnimation = true;
             if (health <= 0)
             {
                 EndGame.isDead = true;

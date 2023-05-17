@@ -50,4 +50,9 @@ public class Inventory : MonoBehaviour
             OnInventoryChange?.Invoke(inventory);
         }
     }
+    public bool Check(Loot itemData)
+    {
+        if (itemDictionary.TryGetValue(itemData, out InventoryItem item)) return true;
+        return false;
+    }
 }
