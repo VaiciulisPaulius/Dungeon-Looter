@@ -7899,6 +7899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152486229}
   - component: {fileID: 1152486228}
+  - component: {fileID: 1152486230}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -7934,6 +7935,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1152486230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152486227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682ba790b62b3a045b5be7438cc03990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healPotPrefab: {fileID: 11400000, guid: 91a7aedda2c1f1d47805673f4fc87485, type: 2}
 --- !u!1001 &1251327789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16653,11 +16667,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   score: 0
+  popupUIPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
   level: 1
   exp: 0
   expToNextLevel: 20
   shop: {fileID: 0}
   flashMaterial: {fileID: 0}
+  flashHealMaterial: {fileID: 0}
   defaultMaterial: {fileID: 0}
   flashDuration: 0
   health: 3
@@ -18748,6 +18765,10 @@ PrefabInstance:
       propertyPath: damageCooldown
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
+      propertyPath: flashHealMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: f06af55eba3520c4391342d0945d7385, type: 2}
     - target: {fileID: 7807099650725328999, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
       propertyPath: m_RootOrder
       value: 0
