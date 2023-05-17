@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13cf80bc76168aa4799a92303b045bfd, type: 3}
-  m_Name: HpPotion
+  m_Name: med_hp_potion_shop
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 91a7aedda2c1f1d47805673f4fc87485, type: 2}
-  description: Heals your HP by 1.
-  baseCost: 1
+  item: {fileID: 11400000, guid: 8c3e130dd3cef424cb1b07e7213b2d1f, type: 2}
+  description: A medium health potion that heals 2 hearts.
+  baseCost: 2
