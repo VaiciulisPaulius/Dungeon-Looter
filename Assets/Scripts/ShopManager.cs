@@ -63,5 +63,6 @@ public class ShopManager : MonoBehaviour
             inventory.Add(shopItemsSO[btnNo].item);
             CheckPurchaseable();
         }
+        
     }
 }
