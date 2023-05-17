@@ -9,11 +9,14 @@ public class Flamethrower : MonoBehaviour
     private bool isWorking;
     [SerializeField] private float cooldown;
     [SerializeField] private float cooldownTimer;
+    [SerializeField] private float duration;
     [SerializeField] private float damage; // added variable for damage inflicted on player
 
     [SerializeField] private Player player; // added reference to player object
 
     private float damageTimer; // added timer for damage intervals
+
+    bool isWithinRange;
 
     private void Start()
     {
@@ -28,26 +31,30 @@ public class Flamethrower : MonoBehaviour
         if (cooldownTimer < 0)
         {
             isWorking = !isWorking;
-            cooldownTimer = cooldown;
+            if(isWorking) cooldownTimer = duration;
+            else cooldownTimer = cooldown;
         }
 
         anim.SetBool("isWorking", isWorking);
 
-        if (isWorking && Vector3.Distance(transform.position, player.transform.position) < 1.0f)
+        if (isWorking && isWithinRange)
         {
-            if (damageTimer <= 0) // check if damage timer has expired
-            {
-                player.TakeDamage(damage);
-                damageTimer = 5.0f; // reset damage timer
-            }
-            else
-            {
-                damageTimer -= Time.deltaTime; // decrement damage timer
-            }
+            player.TakeDamage(damage);
         }
-        else if (!isWorking) // if spike trap is inactive, reset damage timer
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            damageTimer = 0;
+            isWithinRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isWithinRange = false;
         }
     }
 }
