@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int score = 0;
     public GameObject popupUIPrefab;
     public Transform canvasTransform;
+    private GameObject currentPopupUI;
     public int level = 1;
     public int exp = 0;
     public int expToNextLevel = 20;
@@ -206,10 +207,13 @@ public class Player : MonoBehaviour
 
     private void ShowPopupUI(string text)
     {
-        GameObject popupUI = Instantiate(popupUIPrefab, canvasTransform);
-        popupUI.GetComponent<PopupUI>().SetText(text);
-        popupUI.SetActive(true);
-    }
+        if (currentPopupUI == null)
+        {
+            currentPopupUI = Instantiate(popupUIPrefab, canvasTransform);
+        }
 
+        currentPopupUI.GetComponent<PopupUI>().SetText(text);
+        currentPopupUI.SetActive(true);
+    }
 
 }
