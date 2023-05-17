@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 
     public int coins = 0;
     public int score = 0;
+    public GameObject popupUIPrefab;
+    public Transform canvasTransform;
     public int level = 1;
     public int exp = 0;
     public int expToNextLevel = 20;
@@ -199,8 +201,15 @@ public class Player : MonoBehaviour
     {
         unlockedAchievements.Add(achievementName);
         Debug.Log("Achievement Unlocked: " + achievementName);
+        ShowPopupUI("Achievement Unlocked: " + achievementName);
     }
 
+    private void ShowPopupUI(string text)
+    {
+        GameObject popupUI = Instantiate(popupUIPrefab, canvasTransform);
+        popupUI.GetComponent<PopupUI>().SetText(text);
+        popupUI.SetActive(true);
+    }
 
 
 }
