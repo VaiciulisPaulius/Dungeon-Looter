@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class ShopManager : MonoBehaviour
+{
+    public TMP_Text coinUI;
+    public Player player;
+    public ShopItemSO[] shopItemsSO;
+    public ShopTemplate[] shopPanels;
+    public GameObject[] shopPanelsGO;
+    public Button[] myPurchaseBtns;
+
+    
+    void Start()
+    {
+        for (int i = 0; i < shopItemsSO.Length; i++)
+            shopPanelsGO[i].SetActive(true);
+        LoadPanels();
+        CheckPurchaseable();
+    }
+
+    
+    void Update()
+    {
+        coinUI.text = "Coins: " + player.coins.ToString();
+        
+    }
+
+    public void LoadPanels()
+    {
+        for(int i = 0; i< shopItemsSO.Length; i++)
+        {
+            shopPanels[i].title.text = shopItemsSO[i].title;
+            shopPanels[i].description.text = shopItemsSO[i].description;
+            shopPanels[i].cost.text = "Coins: " + shopItemsSO[i].baseCost.ToString(); 
+
+        }
+    }
+    public void CheckPurchaseable()
+    {
+        for (int i = 0; i < shopItemsSO.Length; i++)
+        {
+            if (player.coins >= shopItemsSO[i].baseCost)
+                myPurchaseBtns[i].interactable = true;
+            else
+                myPurchaseBtns[i].interactable = false;
+        }
+    }
+
+    public void PurchaseItem(int btnNo)
+    {
+        if (player.coins >= shopItemsSO[btnNo].baseCost)
+        {
+            
+            player.coins = player.coins - shopItemsSO[btnNo].baseCost;
+            coinUI.text = "Coins: " + player.coins.ToString();
+            CheckPurchaseable();
+        }
+    }
+}
