@@ -65,5 +65,6 @@ public class ShopManager : MonoBehaviour
             inventoryInteraction.SpendCoins(shopItemsSO[btnNo].baseCost);
             CheckPurchaseable();
         }
+        
     }
 }
