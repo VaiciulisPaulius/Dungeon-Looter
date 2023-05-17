@@ -5,7 +5,7 @@ using System.IO;
 public class ScoreExporterButton : MonoBehaviour
 {
     public Button buttonToExport;
-    public string fileName = "index.html";
+    public string fileName = "output.html";
     private ScoreExporter scoreExporter;
 
     private void Start()

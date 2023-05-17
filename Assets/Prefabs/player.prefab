@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa7d90ccbca3ad4bb82b9f96ea17c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupUIPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!114 &7807099650725328985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,14 +204,16 @@ MonoBehaviour:
   score: 0
   level: 1
   exp: 0
-  expToNextLevel: 20
+  expTable: 00000000140000001e0000002800000032000000
   shop: {fileID: 0}
   flashMaterial: {fileID: 2100000, guid: 8e51406c1aedc3f49afc0e58e80490f9, type: 2}
+  flashHealMaterial: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: 22565d865c6f9be44920ce18eba8265e, type: 2}
   flashDuration: 0.3
   health: 3
   maxHealth: 3
   maxTotalHealth: 30
+  damageCooldown: 0
 --- !u!114 &7807099650725328992
 MonoBehaviour:
   m_ObjectHideFlags: 0

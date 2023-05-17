@@ -7509,6 +7509,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2228204768132162754, guid: 1c6b481a0ccd34549b00f33d9fa4ff8f, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229100433847389570, guid: 1c6b481a0ccd34549b00f33d9fa4ff8f, type: 3}
+      propertyPath: m_Text
+      value: 'EXP 0%
+
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 2268899204856941914, guid: 1c6b481a0ccd34549b00f33d9fa4ff8f, type: 3}
       propertyPath: m_Name
       value: UI ProgressBar 1
@@ -16874,7 +16885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonToExport: {fileID: 2069186236}
-  fileName: index.html
+  fileName: output.html
 --- !u!114 &2069186235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17382,6 +17393,18 @@ PrefabInstance:
       propertyPath: flashHealMaterial
       value: 
       objectReference: {fileID: 2100000, guid: f06af55eba3520c4391342d0945d7385, type: 2}
+    - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
+      propertyPath: expTable.Array.data[6]
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
+      propertyPath: expTable.Array.data[7]
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
+      propertyPath: expTable.Array.data[8]
+      value: 330
+      objectReference: {fileID: 0}
     - target: {fileID: 7807099650725328999, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
       propertyPath: m_RootOrder
       value: 0

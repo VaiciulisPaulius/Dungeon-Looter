@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int score = 0;
     public int level = 1;
     public int exp = 0;
-    public int expToNextLevel = 20;
+    public int[] expTable = { 0, 20, 30, 40, 50 };
     private ProgressBar progressBar;
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
@@ -152,9 +152,6 @@ public class Player : MonoBehaviour
         if (amount > 0)
         {
             coins += amount;
-            Debug.Log("Earned coins: " + amount);
-            Debug.Log("Total coins: " + coins);
-            //shop.CheckPurchaseable();
         }
 
     }
@@ -173,31 +170,24 @@ public class Player : MonoBehaviour
             score += amount;
             exp += amount;
             CheckLevelUp();
-            progressBar.BarValue = (float)exp / expToNextLevel * 100f;
-            Debug.Log("Earned score: " + amount);
-            Debug.Log("Total score: " + score);
-            Debug.Log("Total exp: " + exp);
+            progressBar.BarValue = (float)exp / expTable[level] * 100f;
         }
     }
 
     public void CheckLevelUp()
     {
-        if (exp >= expToNextLevel)
+        if (level < 5 && exp >= expTable[level])
         {
             LevelUp();
         }
     }
 
-
     public void LevelUp()
     {
         level++;
         exp = 0;
-        expToNextLevel += 10;
         progressBar.UpdateLevelText(level);
         AddHealth();
-        Debug.Log("Congratulations! You have reached level " + level + ".");
-
     }
 
 }
