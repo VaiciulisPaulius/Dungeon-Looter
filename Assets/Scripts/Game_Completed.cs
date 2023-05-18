@@ -14,7 +14,7 @@ public class Game_Completed : MonoBehaviour
 
     void Update()
     {
-
+        Debug.Log(player.score);
         if (player.score == 100) //&& EndGame.isDead == false && ClickFunction.isInShop == false && Achievements.isAchievementsOpen == false && PauseMenu.isPaused == false)
         {
             GameCompletedUI.SetActive(true);
