@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int score = 0;
     public int level = 1;
     public int exp = 0;
-    public int[] expTable = { 0, 20, 30, 40, 50 };
+    public int[] expTable = { 0, 20, 30, 40 };
     private ProgressBar progressBar;
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
