@@ -14,7 +14,7 @@ public class ClickFunction : MonoBehaviour
     {
        
 
-        if (Input.GetKeyDown(KeyCode.B) && EndGame.isDead == false && PauseMenu.isPaused == false)
+        if (Input.GetKeyDown(KeyCode.B) && EndGame.isDead == false && PauseMenu.isPaused == false && Achievements.isAchievementsOpen == false)
         {
             if (!isInShop)
             {

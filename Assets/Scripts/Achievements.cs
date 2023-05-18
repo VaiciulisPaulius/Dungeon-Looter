@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Achievements : MonoBehaviour
 {
     private Player player;
+    public PlayerMovement playerMovement;
     private HashSet<string> unlockedAchievements = new HashSet<string>();
     public GameObject popupUIPrefab;
     public Transform canvasTransform;
     private GameObject currentPopupUI;
+
+    public TextMeshProUGUI unlockedAchievementsText;
+    public TextMeshProUGUI lockedAchievementsText;
+    public GameObject achievementPanel;
+    public static bool isAchievementsOpen = false;
 
     private Dictionary<string, int> achievements = new Dictionary<string, int>()
     {
@@ -26,10 +33,25 @@ public class Achievements : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
+        UpdateAchievementLists();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P) && EndGame.isDead == false && PauseMenu.isPaused == false && ClickFunction.isInShop == false)
+        {
+            if (!isAchievementsOpen)
+            {
+                EnterAchievements();
+            }
+            else
+            {
+                ExitAchievements();
+            }
+        }
+
+
+
         foreach (var achievement in achievements)
         {
             if (!unlockedAchievements.Contains(achievement.Key))
@@ -49,6 +71,7 @@ public class Achievements : MonoBehaviour
                 {
                     UnlockAchievement(achievement.Key);
                     unlockedAchievements.Add(achievement.Key);
+                    UpdateAchievementLists();
                 }
             }
         }
@@ -74,5 +97,39 @@ public class Achievements : MonoBehaviour
 
         currentPopupUI.GetComponent<PopupUI>().SetText(text);
         currentPopupUI.SetActive(true);
+    }
+
+    private void UpdateAchievementLists()
+    {
+        unlockedAchievementsText.text = "";
+        lockedAchievementsText.text = "";
+
+        foreach (var achievement in achievements)
+        {
+            if (unlockedAchievements.Contains(achievement.Key))
+            {
+                unlockedAchievementsText.text += achievement.Key + "\n";
+            }
+            else
+            {
+                lockedAchievementsText.text += achievement.Key + "\n";
+            }
+        }
+    }
+
+    public void ExitAchievements()
+    {
+        achievementPanel.SetActive(false);
+        Time.timeScale = 1f;
+        isAchievementsOpen = false;
+        playerMovement.EnablePlayerMovement();
+    }
+
+    public void EnterAchievements()
+    {
+        achievementPanel.SetActive(true);
+        Time.timeScale = 0f;
+        isAchievementsOpen = true;
+        playerMovement.DisablePlayerMovement();
     }
 }
