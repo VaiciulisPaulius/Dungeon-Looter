@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
 
     public void CheckLevelUp()
     {
-        if (level < 5 && exp >= expTable[level])
+        if (level < 3 && exp >= expTable[level])
         {
             LevelUp();
         }
