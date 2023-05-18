@@ -17,6 +17,9 @@ public class Achievements : MonoBehaviour
     public GameObject achievementPanel;
     public static bool isAchievementsOpen = false;
 
+    public bool didPlayerBuyBoots;
+    public bool didPlayerBuyPotion;
+
     private Dictionary<string, int> achievements = new Dictionary<string, int>()
     {
         { "First chest looted!", 10 },

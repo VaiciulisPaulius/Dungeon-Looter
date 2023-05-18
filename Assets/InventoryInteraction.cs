@@ -10,12 +10,14 @@ public class InventoryInteraction : MonoBehaviour
     public Loot healPotPrefab;
     public Loot coinPrefab;
     public Loot bootsPrefab;
+    Achievements achievements;
 
     private void Start()
     {
         inventory = GetComponent<Inventory>();
         playerRef = GameManagement.player;
         playerMovRef = GameManagement.playerMovement;
+        achievements = FindObjectOfType<Achievements>();
     }
     private void Update()
     {
@@ -39,14 +41,19 @@ public class InventoryInteraction : MonoBehaviour
             }
             //else return;
         }
-        if (itemSpent.lootName == bootsPrefab.lootName) EquipBoots();
+        if (itemSpent.lootName == bootsPrefab.lootName)
+        {
+            EquipBoots();
+            achievements.didPlayerBuyBoots = true;
+        }
+        if (itemSpent.lootName == healPotPrefab.lootName)
+        {
+            achievements.didPlayerBuyPotion = true;
+        }
     }
     public void EquipBoots()
     {
-        if (inventory.Check(bootsPrefab))
-        {
-            playerMovRef.SetPlayerSpeed(playerMovRef.GetPlayerSpeed() * 1.10f);
-            playerMovRef.SetPlayerSpeedDefault(playerMovRef.GetPlayerSpeed() * 1.10f);
-        }
+        playerMovRef.SetPlayerSpeed(playerMovRef.GetPlayerSpeed() * 1.10f);
+        playerMovRef.SetPlayerSpeedDefault(playerMovRef.GetPlayerSpeed() * 1.10f);
     }
 }
