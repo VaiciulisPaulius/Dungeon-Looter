@@ -17383,7 +17383,7 @@ PrefabInstance:
       objectReference: {fileID: 1280795316}
     - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
       propertyPath: damageCooldown
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807099650725328995, guid: 7ae5122e4c074b34eb3ca2c5c48995eb, type: 3}
       propertyPath: canvasTransform

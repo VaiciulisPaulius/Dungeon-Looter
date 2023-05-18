@@ -10,7 +10,9 @@ public class SpikeTrap : MonoBehaviour
     private bool isWorking;
     [SerializeField] private float cooldown;
     [SerializeField] private float cooldownTimer;
+    [SerializeField] private float duration;
     [SerializeField] private float damage; // added variable for damage inflicted on player
+    [SerializeField] private float delay;
 
     [SerializeField] private Player player; // added reference to player object
 
@@ -19,7 +21,9 @@ public class SpikeTrap : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        player = FindObjectOfType<Player>(); // find player object in scene
+        player = GameManagement.player; // find player object in scene
+        cooldownTimer += delay;
+        Debug.Log(player.maxHealth);
     }
 
     private void Update()
@@ -29,26 +33,16 @@ public class SpikeTrap : MonoBehaviour
         if (cooldownTimer < 0)
         {
             isWorking = !isWorking;
-            cooldownTimer = cooldown;
+            if (isWorking) cooldownTimer = duration;
+            else cooldownTimer = cooldown;
         }
 
         anim.SetBool("isWorking", isWorking);
 
-        if (isWorking && Vector3.Distance(transform.position, player.transform.position) < 1.0f)
+
+        if (isWorking && Vector2.Distance(transform.position, player.transform.position) < 1.0f)
         {
-            if (damageTimer <= 0) // check if damage timer has expired
-            {
-                player.TakeDamage(damage);
-                damageTimer = 5.0f; // reset damage timer
-            }
-            else
-            {
-                damageTimer -= Time.deltaTime; // decrement damage timer
-            }
-        }
-        else if (!isWorking) // if spike trap is inactive, reset damage timer
-        {
-            damageTimer = 0;
+            player.TakeDamage(damage);
         }
     }
 }

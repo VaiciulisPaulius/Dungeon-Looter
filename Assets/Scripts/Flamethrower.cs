@@ -11,6 +11,7 @@ public class Flamethrower : MonoBehaviour
     [SerializeField] private float cooldownTimer;
     [SerializeField] private float duration;
     [SerializeField] private float damage; // added variable for damage inflicted on player
+    [SerializeField] private float delay; // added variable for damage inflicted on player
 
     [SerializeField] private Player player; // added reference to player object
 
@@ -21,7 +22,8 @@ public class Flamethrower : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        player = FindObjectOfType<Player>(); // find player object in scene
+        player = GameManagement.player; // find player object in scene
+        cooldownTimer += delay;
     }
 
     private void Update()
