@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b1f4876d330774ab0560c850fa9c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 1
   cooldownTimer: 0
-  duration: 0
+  duration: 1
   damage: 1
+  delay: 0.05
   player: {fileID: 0}
 --- !u!95 &4229388989152637699
 Animator:
