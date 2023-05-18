@@ -40,7 +40,7 @@ public class SpikeTrap : MonoBehaviour
         anim.SetBool("isWorking", isWorking);
 
 
-        if (isWorking && Vector2.Distance(transform.position, player.transform.position) < 1.0f)
+        if (isWorking && Vector2.Distance(transform.position, player.transform.position) < 0.85f)
         {
             player.TakeDamage(damage);
         }

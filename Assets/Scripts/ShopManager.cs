@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ShopManager : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class ShopManager : MonoBehaviour
         {
             shopPanels[i].title.text = shopItemsSO[i].item.lootName;
             shopPanels[i].description.text = shopItemsSO[i].description;
-            shopPanels[i].cost.text = "Coins: " + shopItemsSO[i].baseCost.ToString(); 
+            shopPanels[i].cost.text = "Coins: " + shopItemsSO[i].baseCost.ToString();
+            shopPanels[i].icon = shopItemsSO[i].icon;
 
         }
     }
