@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Game_Completed : MonoBehaviour
 {
-    public Player player;
+    private Player player;
     public GameObject GameCompletedUI;
-
+    private PlayerMovement playerMovement;
     void Start()
     {
-        player = GameManagement.player;
+        player = GameManagement.player; 
+        playerMovement = GameManagement.playerMovement;
     }
 
     void Update()
     {
-
-        if (player.score == 100) //&& EndGame.isDead == false && ClickFunction.isInShop == false && Achievements.isAchievementsOpen == false && PauseMenu.isPaused == false)
+        if (player.score >= 100 && EndGame.isDead == false && ClickFunction.isInShop == false && Achievements.isAchievementsOpen == false && PauseMenu.isPaused == false)
         {
             GameCompletedUI.SetActive(true);
+            playerMovement.DisablePlayerMovement();
         }
     }
 }

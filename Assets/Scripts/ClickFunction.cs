@@ -32,7 +32,7 @@ public class ClickFunction : MonoBehaviour
     public void ExitShop()
     {
         ShopUI.SetActive(false);
-        Time.timeScale = 1f;
+       // Time.timeScale = 1f;
         isInShop = false;
         playerMovement.EnablePlayerMovement();
     }
@@ -40,7 +40,7 @@ public class ClickFunction : MonoBehaviour
     public void EnterShop()
     {
         ShopUI.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         isInShop = true;
         playerMovement.DisablePlayerMovement();
     }
