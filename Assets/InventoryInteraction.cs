@@ -10,14 +10,14 @@ public class InventoryInteraction : MonoBehaviour
     public Loot healPotPrefab;
     public Loot coinPrefab;
     public Loot bootsPrefab;
-    Achievements achievements;
+    public Achievements[] achievements;
 
     private void Start()
     {
         inventory = GetComponent<Inventory>();
         playerRef = GameManagement.player;
         playerMovRef = GameManagement.playerMovement;
-        achievements = FindObjectOfType<Achievements>();
+        //achievements = FindObjectsOfType<Achievements>();
     }
     private void Update()
     {
@@ -44,11 +44,13 @@ public class InventoryInteraction : MonoBehaviour
         if (itemSpent.lootName == bootsPrefab.lootName)
         {
             EquipBoots();
-            achievements.didPlayerBuyBoots = true;
+            achievements[0].didPlayerBuyBoots = true;
+            achievements[1].didPlayerBuyBoots = true;
         }
         if (itemSpent.lootName == healPotPrefab.lootName)
         {
-            achievements.didPlayerBuyPotion = true;
+            achievements[0].didPlayerBuyPotion = true;
+            achievements[1].didPlayerBuyPotion = true;
         }
     }
     public void EquipBoots()

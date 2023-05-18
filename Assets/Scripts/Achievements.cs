@@ -63,16 +63,18 @@ public class Achievements : MonoBehaviour
                 {
                     shouldUnlock = true;
                 }
-                else if (achievement.Key.Contains("level") && player.level >= achievement.Value)
+                if (achievement.Key.Contains("level") && player.level >= achievement.Value)
                 {
                     shouldUnlock = true;
                 }
-                else if (achievement.Key.Contains("Bought boots") && didPlayerBuyBoots)
+                if (achievement.Key.Contains("Bought boots") && didPlayerBuyBoots)
                 {
+                    Debug.Log("bought boots!");
                     shouldUnlock = true;
                 }
-                else if (achievement.Key.Contains("Bought HP pot") && didPlayerBuyPotion)
+                if (achievement.Key.Contains("Bought HP pot") && didPlayerBuyPotion)
                 {
+                    Debug.Log("bought pot!");
                     shouldUnlock = true;
                 }
 
