@@ -14,8 +14,8 @@ public class InventoryInteraction : MonoBehaviour
     private void Start()
     {
         inventory = GetComponent<Inventory>();
-        playerRef = FindObjectOfType<Player>();
-        playerMovRef = FindObjectOfType<PlayerMovement>();
+        playerRef = GameManagement.player;
+        playerMovRef = GameManagement.playerMovement;
     }
     private void Update()
     {
@@ -37,7 +37,7 @@ public class InventoryInteraction : MonoBehaviour
             {
                 inventory.Remove(coinPrefab);
             }
-            else return;
+            //else return;
         }
         if (itemSpent.lootName == bootsPrefab.lootName) EquipBoots();
     }
@@ -47,8 +47,6 @@ public class InventoryInteraction : MonoBehaviour
         {
             playerMovRef.SetPlayerSpeed(playerMovRef.GetPlayerSpeed() * 1.10f);
             playerMovRef.SetPlayerSpeedDefault(playerMovRef.GetPlayerSpeed() * 1.10f);
-            Debug.Log(playerMovRef.GetPlayerSpeed());
-            Debug.Log(playerMovRef.GetPlayerSpeed() * 1.10f);
         }
     }
 }

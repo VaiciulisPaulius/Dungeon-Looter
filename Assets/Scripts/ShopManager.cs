@@ -60,7 +60,8 @@ public class ShopManager : MonoBehaviour
     {
         if (player.coins >= shopItemsSO[btnNo].baseCost)
         {
-            
+            if (!shopItemsSO[btnNo].canPlayerHaveMulitiple && inventory.Check(shopItemsSO[btnNo].item)) return;
+
             player.coins = player.coins - shopItemsSO[btnNo].baseCost;
             coinUI.text = "Coins: " + player.coins.ToString();
             inventory.Add(shopItemsSO[btnNo].item);

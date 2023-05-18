@@ -15,3 +15,5 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 91a7aedda2c1f1d47805673f4fc87485, type: 2}
   description: Heals your HP by 1.
   baseCost: 1
+  icon: {fileID: 0}
+  canPlayerHaveMulitiple: 1

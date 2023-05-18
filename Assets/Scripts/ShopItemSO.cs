@@ -10,4 +10,5 @@ public class ShopItemSO : ScriptableObject
     public string description;
     public int baseCost;
     public Image icon;
+    public bool canPlayerHaveMulitiple;
 }
