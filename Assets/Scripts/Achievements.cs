@@ -6,7 +6,7 @@ using TMPro;
 public class Achievements : MonoBehaviour
 {
     private Player player;
-    public PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     private HashSet<string> unlockedAchievements = new HashSet<string>();
     public GameObject popupUIPrefab;
     public Transform canvasTransform;
@@ -33,6 +33,7 @@ public class Achievements : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
+        playerMovement = GameManagement.playerMovement;
         UpdateAchievementLists();
     }
 
