@@ -24,13 +24,11 @@ public class Achievements : MonoBehaviour
     {
         { "First chest looted!", 10 },
         { "5 chests looted!", 50 },
-        { "10 chests looted!", 100 },
-        { "25 chests looted!", 250 },
-        { "50 chests looted!", 500 },
+        { "9 chests looted! 1 to go!", 90 },
         { "Reached level 2!", 2 },
         { "Reached level 3!", 3 },
-        { "Reached level 4!", 4 },
-        { "Reached level 5!", 5 }
+        { "Bought boots from shop!", 1 },
+        { "Bought HP pot from shop!", 1 }
     };
 
     private void Start()
@@ -67,6 +65,14 @@ public class Achievements : MonoBehaviour
                     shouldUnlock = true;
                 }
                 else if (achievement.Key.Contains("level") && player.level >= achievement.Value)
+                {
+                    shouldUnlock = true;
+                }
+                else if (achievement.Key.Contains("Bought boots") && didPlayerBuyBoots)
+                {
+                    shouldUnlock = true;
+                }
+                else if (achievement.Key.Contains("Bought HP pot") && didPlayerBuyPotion)
                 {
                     shouldUnlock = true;
                 }
