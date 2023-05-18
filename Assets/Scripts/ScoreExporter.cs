@@ -17,6 +17,11 @@ public class ScoreExporter : MonoBehaviour
             htmlContent += "<div id=\"table-container\">";
             htmlContent += "<table><tr><th>Player name</th><th>Score</th></tr>";
             htmlContent += "<tr><td>xXxDungeonLooterxXx</td><td>1000</td></tr>";
+            htmlContent += "<tr><td>Indiana Jones</td><td>870</td></tr>";
+            htmlContent += "<tr><td>Lara Croft</td><td>680</td></tr>";
+            htmlContent += "<tr><td>Nathan Drake</td><td>520</td></tr>";
+            htmlContent += "<tr><td>Nicolas Cage</td><td>430</td></tr>";
+            htmlContent += "<tr><td>Rick Astley</td><td>250</td></tr>";
             htmlContent += "<tr><td>Player</td><td>" + score + "</td></tr>";
             htmlContent += "</table>";
             htmlContent += "</div>";
