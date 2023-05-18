@@ -24,7 +24,6 @@ public class Achievements : MonoBehaviour
     {
         { "First chest looted!", 10 },
         { "5 chests looted!", 50 },
-        { "9 chests looted! 1 to go!", 90 },
         { "Reached level 2!", 2 },
         { "Reached level 3!", 3 },
         { "Bought boots from shop!", 1 },
